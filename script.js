@@ -13,8 +13,6 @@ function makeGrids(size) {
     }
 }
 
-makeGrids(128);
-
 // functionality
 function active(row) {
     row.addEventListener("mouseenter", ()  => {
@@ -37,22 +35,58 @@ function click(row) {
 }
 
 function color(row) {
-    row.classList.contains("active") ? row.classList.toggle("active") : row.classList.toggle("active");
+    row.style.backgroundColor = "black"
 }
 
-const rows = document.querySelectorAll(".row");
-const reset = document.querySelector(".btn");
-mouseActive = false;
+// generate rows
 
-rows.forEach(row => {
-    click(row);
-    active(row);
-});
+const inputSize = document.querySelector("#mySlider");
+const output = document.querySelector("#output");
 
-reset.addEventListener("click", () => {
+const gridSizes = [16, 32, 64, 128];
+
+function getValue() {
+let index = inputSize.value - 1;
+let result = gridSizes[index];
+output.value = result;
+}
+
+const inialize = () => {
+    const rows = document.querySelectorAll(".row");
+    const reset = document.querySelector(".btn");
+    mouseActive = false;
+
     rows.forEach(row => {
-        if (row.classList.contains("active")) {
-            row.classList.toggle("active");
-        }
+        row.ondragstart = (event) => event.preventDefault();
+        click(row);
+        active(row);
     });
+
+    reset.addEventListener("click", () => {
+        mouseActive = false;
+        rows.forEach(row => {
+            if (row.style.backgroundColor) {
+                row.style.backgroundColor = "";
+            }
+        });
+    });
+}
+
+inputSize.addEventListener("input", () => {
+    const screen = document.querySelector(".sketch-screen");
+
+    // Clear all children
+    screen.innerHTML = "";
+
+    // Update grid size from output (or directly from slider)
+    const gridSize = parseInt(output.value, 10);
+
+    // Build new grid
+    makeGrids(gridSize);
+    inialize();
 });
+
+defaultSize = output.value;
+
+makeGrids(defaultSize);
+inialize();
