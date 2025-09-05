@@ -25,12 +25,14 @@ function active(row) {
 }
 
 function click(row) {
-    row.addEventListener("click", () => {
-        mouseActive = mouseActive === true ? false : true;
+    row.addEventListener("mousedown", () => {
+        mouseActive = true;
+        color(row);
         console.log(mouseActive);
-        if (mouseActive === true) {
-            color(row);
-        }
+    });
+    row.addEventListener("mouseup", () => {
+        mouseActive = false; 
+        console.log(mouseActive);
     });
 }
 
