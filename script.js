@@ -40,10 +40,17 @@ function color(row) {
 
 const rows = document.querySelectorAll(".row");
 const reset = document.querySelector(".btn");
-mouseActive = true;
+mouseActive = false;
 
 rows.forEach(row => {
     click(row);
     active(row);
 });
 
+reset.addEventListener("click", () => {
+    rows.forEach(row => {
+        if (row.classList.contains("active")) {
+            row.classList.toggle("active");
+        }
+    });
+});
