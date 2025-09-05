@@ -50,6 +50,23 @@ footer {
     width: 100%;
     max-width: max-content;
     padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: 2px solid var(--drawing);
+    background-color: var(--screen);
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--drawing);
+    color: var(--screen);
+    outline: 2px solid var(--screen);
+}
+
+.btn:active {
+    background-color: var(--main);
+    transition: none;
 }
 
 .sketch-screen {
