@@ -15,3 +15,24 @@ function makeGrids(size) {
 
 makeGrids(128);
 
+// functionality
+function active(row) {
+    row.addEventListener("mouseenter", ()  => {
+        if (mouseActive === true) {
+            color(row);
+        }  
+    });
+}
+
+function color(row) {
+    row.classList.contains("active") ? row.classList.toggle("active") : row.classList.toggle("active");
+}
+
+const rows = document.querySelectorAll(".row");
+const reset = document.querySelector(".btn");
+mouseActive = true;
+
+rows.forEach(row => {
+    active(row);
+});
+
