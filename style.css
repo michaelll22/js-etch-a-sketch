@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main : #8C1007;
+    --screen : #FFF0C4;
+    --drawing : #3E0703;
+}
+
+body {
+    background-color: #7d7d7d;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    background-color: #555454;
+    padding: 12px;
+    margin-top: 16%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.sketch-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    height: 800px;
+    background-color: var(--main);
+    padding-top: 50px;
+}
+
+.btn {
+    margin-top: 1rem;
+    width: 100%;
+    max-width: max-content;
+    padding: 10px 20px;
+}
+
+.sketch-screen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 600px;
+    height: 600px;
+    background-color: var(--screen);
+}
+
+.sketch-screen > div {
+    height: auto;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.sketch-screen > div > * {
+    flex: 1;
+}
+
+.sketch-screen > div > .active {
+    background-color: var(--drawing);
+}
