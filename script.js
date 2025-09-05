@@ -34,6 +34,13 @@ function click(row) {
     });
 }
 
+function leave(screen) {
+    screen.addEventListener("mouseleave", () => {
+        mouseActive = false;
+        console.log(mouseActive);
+    });
+}
+
 function color(row) {
     row.style.backgroundColor = "black"
 }
@@ -41,17 +48,19 @@ function color(row) {
 // generate rows
 
 const inputSize = document.querySelector("#mySlider");
-const output = document.querySelector("#output");
+const currentSize = document.querySelector(".gridSize");
 
 const gridSizes = [16, 32, 64, 128];
 
+
 function getValue() {
-let index = inputSize.value - 1;
-let result = gridSizes[index];
-output.value = result;
+    let index = inputSize.value - 1;
+    return gridSizes[index];
 }
 
-const inialize = () => {
+currentSize.textContent = `${getValue()} x ${getValue()}`
+
+function inialize() {
     const rows = document.querySelectorAll(".row");
     const reset = document.querySelector(".btn");
     mouseActive = false;
@@ -70,23 +79,19 @@ const inialize = () => {
             }
         });
     });
+    leave(screen);
 }
+const screen = document.querySelector(".sketch-screen");
 
 inputSize.addEventListener("input", () => {
-    const screen = document.querySelector(".sketch-screen");
-
-    // Clear all children
     screen.innerHTML = "";
+    currentSize.textContent = `${getValue()} x ${getValue()}`
 
-    // Update grid size from output (or directly from slider)
-    const gridSize = parseInt(output.value, 10);
-
-    // Build new grid
-    makeGrids(gridSize);
+    makeGrids(getValue());
     inialize();
 });
 
-defaultSize = output.value;
 
-makeGrids(defaultSize);
+
+makeGrids(getValue());
 inialize();
