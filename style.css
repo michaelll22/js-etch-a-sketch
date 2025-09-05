@@ -90,10 +90,6 @@ footer {
     flex: 1;
 }
 
-.sketch-screen > div > .active {
-    background-color: var(--drawing);
-}
-
 .slidecontainer {
     color: white;
     font-size: large;
