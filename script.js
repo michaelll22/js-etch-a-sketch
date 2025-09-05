@@ -24,6 +24,16 @@ function active(row) {
     });
 }
 
+function click(row) {
+    row.addEventListener("click", () => {
+        mouseActive = mouseActive === true ? false : true;
+        console.log(mouseActive);
+        if (mouseActive === true) {
+            color(row);
+        }
+    });
+}
+
 function color(row) {
     row.classList.contains("active") ? row.classList.toggle("active") : row.classList.toggle("active");
 }
@@ -33,6 +43,7 @@ const reset = document.querySelector(".btn");
 mouseActive = true;
 
 rows.forEach(row => {
+    click(row);
     active(row);
 });
 
