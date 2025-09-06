@@ -26,28 +26,25 @@ function click(row) {
     row.addEventListener("mousedown", () => {
         mouseActive = true;
         color(row);
-        console.log(mouseActive);
     });
     row.addEventListener("mouseup", () => {
         mouseActive = false; 
-        console.log(mouseActive);
     });
 }
 
 function leave(screen) {
     screen.addEventListener("mouseleave", () => {
         mouseActive = false;
-        console.log(mouseActive);
     });
 }
 
 function color(row) {
-    row.style.backgroundColor = "black"
+    row.style.backgroundColor = "black";
 }
 
 function getValue() {
-    let index = inputSize.value - 1;
-    return gridSizes[index];
+    let index = inputSize.value;
+    return index;
 }
 
 function draw(rows) {
@@ -69,7 +66,7 @@ function clear(reset, rows) {
     });
 }
 
-function inialize() {
+function initialize() {
     let rows = document.querySelectorAll(".row");
     let reset = document.querySelector(".btn");
 
@@ -79,23 +76,25 @@ function inialize() {
     leave(screen);
 }
 
+function changeSize() {
+    inputSize.addEventListener("change", () => {
+        screen.innerHTML = "";
+        currentSize.textContent = `${getValue()} x ${getValue()}`
+        makeGrids(getValue());
+        initialize();
+    });
+}
+
 // generate rows
 
 const inputSize = document.querySelector("#mySlider");
 const currentSize = document.querySelector(".gridSize");
 
-const gridSizes = [16, 32, 64, 128];
 
 currentSize.textContent = `${getValue()} x ${getValue()}`
 
 const screen = document.querySelector(".sketch-screen");
 
-inputSize.addEventListener("input", () => {
-    screen.innerHTML = "";
-    currentSize.textContent = `${getValue()} x ${getValue()}`
-    makeGrids(getValue());
-    inialize();
-});
-
+changeSize();
 makeGrids(getValue());
-inialize();
+initialize();
