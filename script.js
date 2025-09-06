@@ -71,9 +71,9 @@ function clear(reset, rows) {
 
 function inialize() {
     let rows = document.querySelectorAll(".row");
-    let reset = document.querySelector(".reset-btn");
-    mouseActive = false;
+    let reset = document.querySelector(".btn");
 
+    mouseActive = false;
     draw(rows);
     clear(reset, rows);
     leave(screen);
@@ -93,12 +93,9 @@ const screen = document.querySelector(".sketch-screen");
 inputSize.addEventListener("input", () => {
     screen.innerHTML = "";
     currentSize.textContent = `${getValue()} x ${getValue()}`
-
     makeGrids(getValue());
     inialize();
 });
-
-
 
 makeGrids(getValue());
 inialize();
